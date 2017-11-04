@@ -33,7 +33,12 @@ public class PaymentMethods {
 	}
 	
 	public boolean callPaymentMethods(Integer key, float value) {
-		return payments.get(key).paymnet(value);
+		if (this.payments.containsKey(key)) {
+			return payments.get(key).paymnet(value);
+		} else {
+			System.err.println("Does not exist " + key);
+			return false;
+		}
 	}
 
 }
