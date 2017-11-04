@@ -2,9 +2,20 @@ package main;
 
 import java.util.Scanner;
 
+import properties.PropertiesLoaderVariability;
+
 public class VirtualBookstore {
 
 	public static void main(String[] args) {
+		
+		final String layout = PropertiesLoaderVariability.getValor("layout");
+		System.out.println(layout);
+		
+		if (layout.equals("sale")) {
+			String strSale = PropertiesLoaderVariability.getValor("sale");
+			float sale = Float.parseFloat(strSale) * 100;
+			System.out.println("Seu descondo Ã© de "+ sale + "%");
+		}
 		
 		Scanner in = new Scanner(System.in);
 		int choice;
@@ -20,7 +31,7 @@ public class VirtualBookstore {
 				//showMobileMenu
 				break;
 			default:
-				System.out.println("Opção inválida!");
+				System.out.println("Opï¿½ï¿½o invï¿½lida!");
 				break;
 		}
 			
