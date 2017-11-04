@@ -9,12 +9,11 @@ public class VirtualBookstore {
 	public static void main(String[] args) {
 		
 		final String layout = PropertiesLoaderVariability.getValor("layout");
-		System.out.println(layout);
 		
 		if (layout.equals("sale")) {
 			String strSale = PropertiesLoaderVariability.getValor("sale");
 			float sale = Float.parseFloat(strSale) * 100;
-			System.out.println("Seu descondo é de "+ sale + "%");
+			System.out.println("A loja está com descondo de "+ sale + "%!!!");
 		}
 		
 		Scanner in = new Scanner(System.in);
@@ -34,7 +33,7 @@ public class VirtualBookstore {
 				System.out.println("Op��o inv�lida!");
 				break;
 		}
-			
+		in.close();	
 	}
 	
 	/* VIRTUALBOOKSTORE METHODS:
