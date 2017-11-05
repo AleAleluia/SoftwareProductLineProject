@@ -1,3 +1,4 @@
+
 package main;
 
 import java.util.Scanner;
@@ -6,38 +7,69 @@ import properties.PropertiesLoaderVariability;
 
 public class VirtualBookstore {
 
-	public static void main(String[] args) {
-		
+	private User user = new User();
+	
+	public void printSale() {
 		final String layout = PropertiesLoaderVariability.getValor("layout");
-		
 		if (layout.equals("sale")) {
 			String strSale = PropertiesLoaderVariability.getValor("sale");
 			float sale = Float.parseFloat(strSale) * 100;
 			System.out.println("A loja está com descondo de "+ sale + "%!!!");
 		}
-		
+	}
+	
+	public void menu() {
 		Scanner in = new Scanner(System.in);
 		int choice;
-		System.out.println("Escolha o tipo de interface desejada");
-		System.out.println("1 - Web \n" + "2 - Mobile");
-		
+		System.out.println("Escolha sua ação");
+		System.out.println("1 - Listar livros \n" + "2 - Comprar Livros no carrinho do usuário\n" 
+				+ "3 - Adicionar livros no carrinho por id\n");
 		choice = in.nextInt();
-		switch(choice){
+		switch(choice) {
 			case 1:
-				//showWebMenu
+				showBooks();
 				break;
 			case 2:
-				//showMobileMenu
+				buyBooks();
+				break;
+			case 3:
+				addCart();
 				break;
 			default:
-				System.out.println("Op��o inv�lida!");
+				System.out.println("Opção invalida");
 				break;
 		}
 		in.close();	
 	}
 	
-	/* VIRTUALBOOKSTORE METHODS:
-	 * - showWebMenu (show the options inline)
-	 * - showMobileMenu (show the options underneath)
-	 * */
+	public void run() {
+		printSale();
+		menu();
+	}
+	
+	/**
+	 * Show all books
+	 */
+	public void showBooks() {
+		
+	}
+	
+	/**
+	 * Buy books
+	 */
+	public void buyBooks() {
+		
+	}
+	
+	/**
+	 * Adds books in cart
+	 */
+	public void addCart() {
+		System.out.println("Digite o id do livro que você deseja adicionar ao carrinho.");
+		Scanner in = new Scanner(System.in);
+		int id = in.nextInt();
+		System.out.println("Qual a quantidade?");
+		int quantity = in.nextInt();
+		//Add
+	}
 }

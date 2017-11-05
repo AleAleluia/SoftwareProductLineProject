@@ -11,6 +11,10 @@ public class User {
 	String password;
 	ArrayList<Book> shoppingCart = new ArrayList<Book>();
 	
+	public User() {
+		
+	}
+	
 	public User(String userName, int userId, String userPassword){
 		this.name = userName;
 		this.id = userId;
@@ -20,7 +24,6 @@ public class User {
 	public void addToCart(Book book, int quantity){
 		for(int i=0; i<quantity; i++)
 			this.shoppingCart.add(book);
-		
 	}
 	
 	public void showShoppingCart(){
