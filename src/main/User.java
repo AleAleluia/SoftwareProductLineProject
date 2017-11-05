@@ -48,7 +48,7 @@ public class User {
 			this.shoppingCart.clear();
 			return true;
 		} else {
-			System.out.println("Pagamento não realizado!");
+			System.out.println("Pagamento nao realizado!");
 		}
 		return false;
 	}
