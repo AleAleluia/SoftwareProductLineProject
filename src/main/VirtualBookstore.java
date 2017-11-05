@@ -14,15 +14,15 @@ public class VirtualBookstore {
 		if (layout.equals("sale")) {
 			String strSale = PropertiesLoaderVariability.getValor("sale");
 			float sale = Float.parseFloat(strSale) * 100;
-			System.out.println("A loja está com descondo de "+ sale + "%!!!");
+			System.out.println("A loja esta com desconto de "+ sale + "%!!!");
 		}
 	}
 	
 	public void menu() {
 		Scanner in = new Scanner(System.in);
 		int choice;
-		System.out.println("Escolha sua ação");
-		System.out.println("1 - Listar livros \n" + "2 - Comprar Livros no carrinho do usuário\n" 
+		System.out.println("Escolha sua acao");
+		System.out.println("1 - Listar livros \n" + "2 - Comprar Livros no carrinho do usuario\n" 
 				+ "3 - Adicionar livros no carrinho por id\n");
 		choice = in.nextInt();
 		switch(choice) {
@@ -36,7 +36,7 @@ public class VirtualBookstore {
 				addCart();
 				break;
 			default:
-				System.out.println("Opção invalida");
+				System.out.println("Opcao invalida");
 				break;
 		}
 		in.close();	
@@ -65,7 +65,7 @@ public class VirtualBookstore {
 	 * Adds books in cart
 	 */
 	public void addCart() {
-		System.out.println("Digite o id do livro que você deseja adicionar ao carrinho.");
+		System.out.println("Digite o id do livro que voce deseja adicionar ao carrinho:");
 		Scanner in = new Scanner(System.in);
 		int id = in.nextInt();
 		System.out.println("Qual a quantidade?");
