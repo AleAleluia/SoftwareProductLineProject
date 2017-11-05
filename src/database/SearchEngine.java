@@ -18,6 +18,43 @@ public class SearchEngine {
 	private final String USER = "root"; //username
 	private final String PASS = "363436lm"; //password
 	
+	public Book getBookBy(int id) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		String sql = "SELECT * FROM books price WHERE id = " + id;
+		try {
+			conn = getDBConnection();
+			stmt = conn.prepareStatement(sql);
+			//stmt.setInt(1, 1001);
+			
+			ResultSet rs = stmt.executeQuery(); //execute sql statement
+			
+			while(rs.next()) {
+				String title = rs.getString("title");
+				String author = rs.getString("author");
+				float price = rs.getFloat("price");
+				return new Book(id, title, price);
+			}
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if(stmt != null)
+		            stmt.close();
+			} catch(SQLException se2) {
+				//nothing we can do
+			}
+			
+			try {
+				if(conn != null)
+		            conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
 	public List<Book> orderByPrice() {
 		Connection conn = null;
 		PreparedStatement stmt = null;

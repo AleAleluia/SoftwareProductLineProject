@@ -75,6 +75,17 @@ public class VirtualBookstore {
 		user.buyBook();
 	}
 	
+	public Book getBookBy(int id) {
+		SearchEngine searchEngine = new SearchEngine();
+		List<Book> lBooks = searchEngine.orderByPrice();
+		for (Book book : lBooks) {
+			if (book.getId() == id) {
+				return book;
+			}
+		}
+		return null;
+	}
+	
 	/**
 	 * Adds books in cart
 	 */
@@ -84,7 +95,7 @@ public class VirtualBookstore {
 		int id = in.nextInt();
 		System.out.println("Qual a quantidade?");
 		int quantity = in.nextInt();
-		//Add
-		//TODO add books in cart
+		SearchEngine se = new SearchEngine();
+		this.user.addToCart(se.getBookBy(id), quantity);
 	}
 }
