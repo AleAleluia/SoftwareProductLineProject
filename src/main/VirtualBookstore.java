@@ -1,8 +1,10 @@
 
 package main;
 
+import java.util.List;
 import java.util.Scanner;
 
+import database.SearchEngine;
 import properties.PropertiesLoaderVariability;
 
 public class VirtualBookstore {
@@ -23,7 +25,7 @@ public class VirtualBookstore {
 		int choice;
 		System.out.println("Escolha sua ação");
 		System.out.println("1 - Listar livros \n" + "2 - Comprar Livros no carrinho do usuário\n" 
-				+ "3 - Adicionar livros no carrinho por id\n");
+				+ "3 - Adicionar livros no carrinho por id\n" + "4 - Sair");
 		choice = in.nextInt();
 		switch(choice) {
 			case 1:
@@ -35,11 +37,14 @@ public class VirtualBookstore {
 			case 3:
 				addCart();
 				break;
+			case 4:
+				return;
 			default:
 				System.out.println("Opção invalida");
 				break;
 		}
-		in.close();	
+		menu();
+		in.close();
 	}
 	
 	public void run() {
@@ -51,14 +56,22 @@ public class VirtualBookstore {
 	 * Show all books
 	 */
 	public void showBooks() {
-		
+		SearchEngine searchEngine = new SearchEngine();
+		List<Book> lBooks = searchEngine.orderByPrice();
+		for (Book book : lBooks) {
+			System.out.println("==========================");
+			System.out.println("Id: " + book.getId());
+			System.out.println("Título: " + book.getName());
+			System.out.println("Preço: " + book.getPrice());
+			System.out.println("==========================");
+		}
 	}
 	
 	/**
 	 * Buy books
 	 */
 	public void buyBooks() {
-		
+		user.buyBook();
 	}
 	
 	/**
@@ -71,5 +84,6 @@ public class VirtualBookstore {
 		System.out.println("Qual a quantidade?");
 		int quantity = in.nextInt();
 		//Add
+		//TODO add books in cart
 	}
 }

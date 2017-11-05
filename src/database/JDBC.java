@@ -10,7 +10,7 @@ public class JDBC {
 
 	/*database credentials*/
 	static final String USER = "root"; //username
-	static final String PASS = "root"; //password
+	static final String PASS = "363436lm"; //password
 	
 	public static void main(String[] args){
 		Connection conn = null;
@@ -21,50 +21,50 @@ public class JDBC {
 			
 			System.out.println("Connecting to database...");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			
-			System.out.println("Creating database...");
 			stmt = conn.createStatement();
+			/**
+			System.out.println("Creating database...");
 			
-			//String db = "CREATE DATABASE library";
-			//stmt.executeUpdate(db);
+			String db = "CREATE DATABASE library";
+			stmt.executeUpdate(db);
 			
-			/*String table = "CREATE TABLE books ("
+			String table = "CREATE TABLE books ("
 					+ "id int NOT NULL,"
 					+ "title varchar(255),"
 					+ "author varchar(255),"
 					+ "price float);";
-			stmt.executeUpdate(table);*/
-			
+			stmt.executeUpdate(table);
+			**/
 			String content = "INSERT INTO books (id, title, author, price)"
-					+ " VALUES ('1', 'Cálculo Volume I', 'James Stewart', '84.90');" ;
+					+ " VALUES ('1', 'Cï¿½lculo Volume I', 'James Stewart', '84.90');" ;
 			stmt.executeUpdate(content);
 			
 			content = "INSERT INTO books (id, title, author, price)"
-					+ " VALUES ('2', 'Cálculo Volume II', 'James Stewart', '89.90');";
+					+ " VALUES ('2', 'Cï¿½lculo Volume II', 'James Stewart', '89.90');";
 			stmt.executeUpdate(content);
 			
 			content = "INSERT INTO books (id, title, author, price)"
-					+ " VALUES ('3', 'Fundamentos de Física Volume I', 'David Halliday, Robert Resnick', '109.90');";
+					+ " VALUES ('3', 'Fundamentos de Fï¿½sica Volume I', 'David Halliday, Robert Resnick', '109.90');";
 			stmt.executeUpdate(content);
 			
 			content = "INSERT INTO books (id, title, author, price)"
-					+ " VALUES ('4', 'Conceitos de Linguagem de Programação', 'Robert Sebesta', '125.90');";
+					+ " VALUES ('4', 'Conceitos de Linguagem de Programaï¿½ï¿½o', 'Robert Sebesta', '125.90');";
 			stmt.executeUpdate(content);
 			
 			content = "INSERT INTO books (id, title, author, price)"
-					+ " VALUES ('5', 'Algoritmos - Teoria e Prática', 'Thomas Cormem', '282.90');";
+					+ " VALUES ('5', 'Algoritmos - Teoria e Prï¿½tica', 'Thomas Cormem', '282.90');";
 			stmt.executeUpdate(content);
 			
 			content = "INSERT INTO books (id, title, author, price)"
-					+ " VALUES ('6', 'Introdução a Programação com a Linguagem C', 'Rodrigo de Barros Paes', '55.90');";
+					+ " VALUES ('6', 'Introduï¿½ï¿½o a Programaï¿½ï¿½o com a Linguagem C', 'Rodrigo de Barros Paes', '55.90');";
 			stmt.executeUpdate(content);
 			
 			content = "INSERT INTO books (id, title, author, price)"
-					+ " VALUES ('7', 'Inteligência Artificial', 'Peter Norvig', '307.90');";
+					+ " VALUES ('7', 'Inteligï¿½ncia Artificial', 'Peter Norvig', '307.90');";
 			stmt.executeUpdate(content);
 			
 			content = "INSERT INTO books (id, title, author, price)"
-					+ " VALUES ('8', 'O Guia do Mochileiro das Galáxias', 'Douglas Adams', '19.90');";
+					+ " VALUES ('8', 'O Guia do Mochileiro das Galï¿½xias', 'Douglas Adams', '19.90');";
 			stmt.executeUpdate(content);
 			
 			content = "INSERT INTO books (id, title, author, price)"

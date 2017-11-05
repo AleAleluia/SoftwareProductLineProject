@@ -1,21 +1,34 @@
 package database;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
-public class SearchEngine extends JDBC {
+import main.Book;
+
+public class SearchEngine {
+	private final String DB_URL = "jdbc:mysql://localhost/library";
+
+	/*database credentials*/
+	private final String USER = "root"; //username
+	private final String PASS = "363436lm"; //password
 	
-	
-	public static void orderByPrice() {
-		
+	public List<Book> orderByPrice() {
 		Connection conn = null;
 		PreparedStatement stmt = null;
+		List<Book> result = new ArrayList<Book>();
 		
 		String sql = "SELECT * FROM books ORDER BY price";
 		
 		try {
 			conn = getDBConnection();
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, 1001);
+			//stmt.setInt(1, 1001);
 			
 			ResultSet rs = stmt.executeQuery(); //execute sql statement
 			
@@ -24,6 +37,7 @@ public class SearchEngine extends JDBC {
 				String title = rs.getString("title");
 				String author = rs.getString("author");
 				float price = rs.getFloat("price");
+				result.add(new Book(id, title, price));
 			}
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
@@ -42,10 +56,10 @@ public class SearchEngine extends JDBC {
 				se.printStackTrace();
 			}
 		}
-	
+		return result;
 	}
 	
-	public static void orderByTitle() {
+	public void orderByTitle() {
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -88,7 +102,7 @@ public class SearchEngine extends JDBC {
 	
 	}
 	
-	private static Connection getDBConnection() {
+	private Connection getDBConnection() {
 		
 		Connection conn = null;
 		Statement stmt = null;
@@ -98,14 +112,15 @@ public class SearchEngine extends JDBC {
 			
 			System.out.println("Connecting to database...");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			
-			return conn;
+		    return conn;
 			
 		} catch (SQLException se) {
 			se.printStackTrace(); //handle errors for jdbc
 		} catch (Exception e) {
 			e.printStackTrace(); //handle errors for Class.forName
-		} finally { //close resources
+		} 
+		/*
+		finally { //close resources
 			try {
 				if(stmt != null)
 		            stmt.close();
@@ -121,15 +136,9 @@ public class SearchEngine extends JDBC {
 			}
 			 
 		}
+		*/
 		
 		return conn;
 	}
 	
-	
-	public static void main(String[] args) {
-		
-		orderByTitle();
-		
-	}
-
 }
