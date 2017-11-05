@@ -15,7 +15,8 @@ public class PaymentMethods {
 		int key = 1;
 		if (this.payment.contains("creditcard")) {
 			this.payments.put(new Integer(key++), new CreditCard());
-		} else if (this.payment.contains("ticket")) {
+		} 
+		if (this.payment.contains("ticket")) {
 			this.payments.put(new Integer(key++), new Ticket());
 		}
 	}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import payment.PaymentMethods;
+import properties.PropertiesLoaderVariability;
 
 public class User {
 	String name;
@@ -26,7 +27,7 @@ public class User {
 			this.shoppingCart.add(book);
 	}
 	
-	public void showShoppingCart(){
+	public float showShoppingCart(){
 		float sum=0;
 		System.out.println("----------CARRINHO DE COMPRAS:----------");
 		System.out.println("Lista de Livros: \n");
@@ -35,14 +36,19 @@ public class User {
 			sum += this.shoppingCart.get(i).getPrice();
 		}
 		System.out.printf("TOTAL A PAGAR: %f \n", sum);
+		final String layout = PropertiesLoaderVariability.getValor("layout");
+		if (layout.equals("sale")) {
+			String strSale = PropertiesLoaderVariability.getValor("sale");
+			float sale = Float.parseFloat(strSale);
+			sum = sum - (sum * sale);
+			System.out.println("A loja esta com desconto de "+ sale + "%!!!");
+			System.out.printf("TOTAL A PAGAR COM DESCONDO: %f \n", sum);
+		}
+		return sum;
 	}
 	
 	public boolean buyBook(){
-		float sum=0;
-		for(int i=0; i<this.shoppingCart.size(); i++){
-			sum += this.shoppingCart.get(i).getPrice();
-		}
-		System.out.printf("TOTAL A PAGAR: %f \n", sum);
+		float sum = showShoppingCart();
 		if(paymentMethod(sum)){
 			System.out.println("Pagamento realizado com sucesso!");
 			this.shoppingCart.clear();

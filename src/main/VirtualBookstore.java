@@ -58,7 +58,7 @@ public class VirtualBookstore {
 	 */
 	public void showBooks() {
 		SearchEngine searchEngine = new SearchEngine();
-		List<Book> lBooks = searchEngine.orderByPrice();
+		List<Book> lBooks = searchEngine.getOrderBy();
 		for (Book book : lBooks) {
 			System.out.println("==========================");
 			System.out.println("Id: " + book.getId());

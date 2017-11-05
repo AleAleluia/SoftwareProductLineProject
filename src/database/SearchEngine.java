@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.Book;
+import properties.PropertiesLoaderVariability;
 
 public class SearchEngine {
 	private final String DB_URL = "jdbc:mysql://localhost/library";
@@ -55,6 +56,16 @@ public class SearchEngine {
 		return null;
 	}
 	
+	public List<Book> getOrderBy() {
+		final String orderBy = PropertiesLoaderVariability.getValor("search").toLowerCase();
+		if (orderBy.equals("title")) {
+			return this.orderByTitle();
+		} else if (orderBy.equals("price")) {
+			return this.orderByPrice();
+		}
+		return null;
+	}
+	
 	public List<Book> orderByPrice() {
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -96,10 +107,11 @@ public class SearchEngine {
 		return result;
 	}
 	
-	public void orderByTitle() {
+	public List<Book> orderByTitle() {
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
+		List<Book> result = new ArrayList<Book>();
 		
 		String sql = "SELECT * FROM books ORDER BY title";
 		
@@ -109,7 +121,7 @@ public class SearchEngine {
 			conn = getDBConnection();
 			stmt = conn.prepareStatement(sql);
 			
-			stmt.setInt(1, 1001);
+			//stmt.setInt(1, 1001);
 			
 			ResultSet rs = stmt.executeQuery(); //execute sql statement
 						
@@ -118,6 +130,7 @@ public class SearchEngine {
 				String title = rs.getString("title");
 				String author = rs.getString("author");
 				float price = rs.getFloat("price");
+				result.add(new Book(id, title, price));
 			}
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
@@ -136,7 +149,7 @@ public class SearchEngine {
 				se.printStackTrace();
 			}
 		}
-	
+		return result;
 	}
 	
 	private Connection getDBConnection() {
